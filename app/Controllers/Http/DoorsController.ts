@@ -4,7 +4,11 @@ import  Door from 'App/Models/Door'
 export default class DoorsController {
   public async index({request, response}: HttpContextContract) {
 
-    const doors = await Door.all()
+    const doors = await Door
+      .query()
+      .preload('terminal')
+      .preload('location')
+    
     return response.status(200).json(doors)
 
   }

@@ -1,4 +1,6 @@
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
+import GbhMgrmdrterminal from './Terminal'
+import GbhMgrmdrlocation from './Location'
 
 export default class GbhMgrmdrdoor extends BaseModel {
 
@@ -22,4 +24,16 @@ export default class GbhMgrmdrdoor extends BaseModel {
 
   @column()
   public mgr_doors_terminal: string
+
+  @belongsTo(() => GbhMgrmdrterminal, {
+    foreignKey: 'mgr_doors_terminal',
+  })
+  public terminal: BelongsTo<typeof GbhMgrmdrterminal>
+
+  @belongsTo(() => GbhMgrmdrlocation, {
+    foreignKey: 'mgr_doors_location',
+  })
+  public location: BelongsTo<typeof GbhMgrmdrlocation>
+  
+
 }
