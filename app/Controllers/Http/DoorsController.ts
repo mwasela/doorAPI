@@ -41,7 +41,9 @@ export default class DoorsController {
     door.merge(data)
     await door.save()
 
-    if (door.mgr_doors_state == '1') {
+    const accesslog = await Accesslog.query().orderBy('id', 'desc').firstOrFail()
+    if (accesslog.mgr_accesslogs_state != door.mgr_doors_state) {
+
       await Accesslog.create({
         mgr_accesslogs_time: new Date(),
         mgr_accesslogs_state: door.mgr_doors_state,
