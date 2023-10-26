@@ -1,5 +1,7 @@
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, belongsTo, column, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
 import { DateTime } from 'luxon'
+import GbhMgrmdrterminal from './Terminal'
+import GbhMgrmdrlocation from './Location'
 
 export default class GbhMgrmdraccesslog extends BaseModel {
 
@@ -24,7 +26,16 @@ export default class GbhMgrmdraccesslog extends BaseModel {
   @column()
   public gbh_mgrmdraccesslogs_terminal: string
 
-
+  //gbh_mgrmdraccesslogs_locations and gbh_mgrmdraccesslogs_terminal are foreign keys to the GbhMgrmdrlocation and GbhMgrmdrterminal tables
+  @belongsTo(() => GbhMgrmdrterminal, {
+    foreignKey: 'gbh_mgrmdraccesslogs_terminal',
+  })
+  public terminal: BelongsTo<typeof GbhMgrmdrterminal>
+  
+  @belongsTo(() => GbhMgrmdrlocation, {
+    foreignKey: 'gbh_mgrmdraccesslogs_locations',
+  })
+  public location: BelongsTo<typeof GbhMgrmdrlocation>
 
 
 }
