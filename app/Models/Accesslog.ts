@@ -1,4 +1,5 @@
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { DateTime } from 'luxon'
 
 export default class GbhMgrmdraccesslog extends BaseModel {
 
@@ -9,13 +10,13 @@ export default class GbhMgrmdraccesslog extends BaseModel {
   public id: number
 
   @column()
-  public mgr_accesslogs_time: string
+  public mgr_accesslogs_time: Date
 
   @column()
   public mgr_accesslogs_state: string
 
   @column()
-  public gbh_mgrmdraccesslogs_doors: string
+  public gbh_mgrmdraccesslogs_doors: number
 
   @column()
   public gbh_mgrmdraccesslogs_locations: string

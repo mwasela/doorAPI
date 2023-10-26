@@ -1,5 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import  Door from 'App/Models/Door'
+import Accesslog from 'App/Models/Accesslog'
+
 
 export default class DoorsController {
   public async index({request, response}: HttpContextContract) {
@@ -24,11 +26,9 @@ export default class DoorsController {
   }
 
   public async show({request, response}: HttpContextContract) {
-
     const { id } = request.params()
     const door = await Door.findOrFail(id)
     return response.status(200).json(door)
-
   }
 
   //public async edit({}: HttpContextContract) {}
@@ -40,6 +40,17 @@ export default class DoorsController {
     const door = await Door.findOrFail(id)
     door.merge(data)
     await door.save()
+
+    if (door.mgr_doors_state == '1') {
+      await Accesslog.create({
+        mgr_accesslogs_time: new Date(),
+        mgr_accesslogs_state: door.mgr_doors_state,
+        gbh_mgrmdraccesslogs_doors: door.id,
+        gbh_mgrmdraccesslogs_locations: door.mgr_doors_location,
+        gbh_mgrmdraccesslogs_terminal: door.mgr_doors_terminal
+      })
+    }
+ 
     return response.status(200).json(door)
 
   }
