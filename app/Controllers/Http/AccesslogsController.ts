@@ -29,7 +29,7 @@ export default class AccesslogsController {
   public async update({request, response}: HttpContextContract) {
       
       const { id } = request.params()
-      const data = request.only(['mgr_accesslogs_time', 'mgr_accesslogs_state', 'gbh_mgrmdraccesslogs_doors', 'gbh_mgrmdraccesslogs_locations', 'gbh_mgrmdraccesslogs_terminal'])
+      const data = request.only(['mgr_accesslogs_state', 'gbh_mgrmdraccesslogs_doors', 'gbh_mgrmdraccesslogs_locations', 'gbh_mgrmdraccesslogs_terminal'])
       const accesslog = await Accesslog.findOrFail(id)
       accesslog.merge(data)
       await accesslog.save()

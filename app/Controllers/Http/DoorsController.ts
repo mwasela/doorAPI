@@ -49,7 +49,7 @@ export default class DoorsController {
     if (!accesslog || accesslog.mgr_accesslogs_state != door.mgr_doors_state) {
 
       await Accesslog.create({
-        mgr_accesslogs_time: new Date(),
+        // mgr_accesslogs_time: new Date(),
         mgr_accesslogs_state: door.mgr_doors_state,
         gbh_mgrmdraccesslogs_doors: door.id,
         gbh_mgrmdraccesslogs_locations: door.mgr_doors_location,

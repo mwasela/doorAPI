@@ -12,8 +12,11 @@ export default class GbhMgrmdraccesslog extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column()
-  public mgr_accesslogs_time: Date
+  // @column()
+  // public mgr_accesslogs_time: Date
+
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  public updatedAt: DateTime
 
   @column()
   public mgr_accesslogs_state: string
