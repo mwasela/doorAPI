@@ -4,8 +4,8 @@ import Accesslog from 'App/Models/Accesslog'
 export default class AccesslogsController {
   public async index({request, response}: HttpContextContract) {
 
-    const accesslogs = await Accesslog.query().orderBy('id', 'desc').preload('terminal').preload('location').preload('door')
-    return response.status(200).json(accesslogs)
+    const accesslogs = await Accesslog.query().orderBy('id', 'desc').preload('terminal').preload('location').preload('door').paginate(request.qs().current || 1, request.qs().pageSize || 5)
+    return response.ok(accesslogs)
   }
 
  // public async create({request, response}: HttpContextContract) {}

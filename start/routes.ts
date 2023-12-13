@@ -26,13 +26,20 @@ Route.get('/', async () => {
 
 Route.resource('/users', 'UsersController').apiOnly()
 
+Route.group(() => {
+
 Route.resource('/doors', 'DoorsController').apiOnly()
+
+})
+
 
 Route.resource('/locations', 'LocationsController').apiOnly()
 
 Route.resource('/terminals', 'TerminalsController').apiOnly()
 
 Route.resource('/logs', 'AccesslogsController').apiOnly()
+
+Route.post('/login', 'LoginController.login')
 
 
 
