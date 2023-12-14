@@ -21,7 +21,7 @@ export default class LoginController {
 
         const token = await auth.use('api').generate(user)
 
-        response.ok(token)
+        return response.status(200).json({token: token.toJSON(), user: user})
 
     }
 }

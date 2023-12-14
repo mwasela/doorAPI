@@ -165,7 +165,7 @@ export default class DoorsController {
               //terminal and location are foreign keys in the door model
               .htmlView('emails/doorstatus', { door: doordata })
 
-          }
+          })
       }
 
 
