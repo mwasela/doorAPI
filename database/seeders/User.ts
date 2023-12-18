@@ -13,6 +13,11 @@ export default class extends BaseSeeder {
         name: 'Samuel Kimani',
         email: 'samuel.kimani@grainbulk.com',
         password: '123456',
+      },
+      {
+        name: 'Admin',
+        email: 'dooradmin@grainbulk.com',
+        password: '123456',
       }
     ])
 }
